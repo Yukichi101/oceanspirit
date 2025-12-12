@@ -1,0 +1,452 @@
+/* --- RESET & VARIABLES --- */
+:root {
+    --primary-blue: #1a1f4a; /* Deep Navy */
+    --accent-yellow: #d4af37;
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --text-grey: #666666;
+    --bg-light: #f9f9f9;
+    --font-main: 'Montserrat', sans-serif;
+    --padding-std: 8%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-color: #fff;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* --- BUTTONS --- */
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    background-color: rgba(26, 31, 74, 0.9);
+    color: var(--text-light);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: rgba(26, 31, 74, 1);
+    transform: translateY(-2px);
+}
+
+.btn-dark {
+    background-color: var(--primary-blue);
+}
+
+/* --- NAVIGATION (Floating Glass Pill) --- */
+nav {
+    position: fixed;
+    top: 25px; /* Floats off the top edge */
+    left: 50%;
+    transform: translateX(-50%); /* Centers the element */
+    width: 90%;
+    max-width: 1100px; /* Prevents it from getting too wide on huge screens */
+    z-index: 1000;
+    
+    /* THE PILL SHAPE & GLASS EFFECT */
+    padding: 15px 40px;
+    border-radius: 50px; /* Fully rounded corners */
+    background: rgba(255, 255, 255, 0.75); /* Semi-transparent white */
+    backdrop-filter: blur(15px); /* Blurs the background behind the nav */
+    -webkit-backdrop-filter: blur(15px); /* Safari support */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); /* Soft shadow makes it float */
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Subtle border highlight */
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+/* Logo - Always dark blue now */
+.logo {
+    color: var(--primary-blue);
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    z-index: 1001;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+/* Links - Always dark grey */
+.nav-links a {
+    color: var(--text-dark);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 1;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-yellow); /* Gold hover effect */
+}
+
+/* Scroll Effect: Compresses slightly and becomes solid white */
+nav.scrolled {
+    background: #ffffff; /* Solid white */
+    padding: 12px 40px; /* Shrinks slightly */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* Mobile Hamburger - Needs to be dark to show on the white pill */
+.hamburger { display: none; }
+
+@media screen and (max-width: 900px) {
+    .nav-links { display: none; } /* Hide links on mobile */
+    .hamburger { display: block; cursor: pointer; }
+    
+    /* Make hamburger lines dark blue */
+    .hamburger span {
+        display: block; 
+        width: 25px; 
+        height: 2px; 
+        background: var(--primary-blue); 
+        margin: 5px 0;
+    }
+}
+
+/* --- HERO SECTION --- */
+#hero {
+    min-height: 100vh;
+    width: 100%;
+    display: grid;
+    /* Split screen: Left takes 40%, Right takes 60% */
+    grid-template-columns: 40% 60%; 
+    background: #f4f4f4; /* Light grey background for text area */
+}
+
+/* The Image Side */
+.hero-overlay {
+    /* We repurpose this div to be the image container on the right */
+    position: relative; /* Reset position */
+    width: 100%;
+    height: 100%;
+    background: url('/images/heading.jpg') no-repeat center center/cover;
+    order: 2; /* Moves to the right */
+    
+    /* Modern touch: round the bottom left corner of the image */
+    border-bottom-left-radius: 100px; 
+}
+
+.hero-content {
+    order: 1; /* Moves to the left */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10% 0 15%; /* Generous padding */
+    color: #1a1a1a; /* Dark text for contrast against white */
+}
+
+.hero-content h1 {
+    font-size: 5.5rem;
+    line-height: 0.9;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    color: #000;
+    letter-spacing: -2px;
+}
+
+/* Modern accent: Hollow text effect for the word "Pollock" */
+.hero-content h1 br + span { 
+    /* You would need to wrap "Pollock" in a span in HTML, 
+       OR just apply this to the whole H1 if you prefer */
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #555; /* Softer grey */
+    margin-bottom: 50px;
+    border-left: 3px solid #000; /* Distinct accent line */
+    padding-left: 20px;
+}
+
+.btn {
+    align-self: flex-start; /* Stops button from stretching */
+    padding: 18px 50px;
+    background: #1a1f4a; /* Dark button */
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #333;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Mobile Responsiveness for Split View */
+@media (max-width: 768px) {
+    #hero {
+        grid-template-columns: 1fr; /* Stack them */
+        grid-template-rows: 50vh auto;
+    }
+    .hero-overlay {
+        order: 1; /* Image on top */
+        border-bottom-left-radius: 0;
+    }
+    .hero-content {
+        order: 2; /* Text on bottom */
+        padding: 60px 20px;
+    }
+}
+
+/* --- FEATURES SECTION --- */
+#features {
+    padding: 100px var(--padding-std);
+    background-color: #fff;
+    text-align: center;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 70px;
+    text-transform: capitalize;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for desktop */
+    gap: 40px;
+}
+
+.feature-item h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.feature-item p {
+    font-size: 0.85rem;
+    color: var(--text-grey);
+    line-height: 1.5;
+}
+
+/* --- DISCOVER SECTION --- */
+#discover {
+    padding: 50px var(--padding-std) 100px;
+}
+
+.discover-header {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 60px;
+    color: var(--text-dark);
+}
+
+.content-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    margin-bottom: 120px;
+}
+
+/* Generic Reverse Class for switching text/image sides */
+.content-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.text-col {
+    flex: 1;
+    max-width: 450px;
+}
+
+.text-col p {
+    margin-bottom: 35px;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.image-col {
+    flex: 1.2;
+    width: 100%;
+}
+
+.rounded-img {
+    border-radius: 20px;
+    width: 100%;
+}
+
+.shadow-img {
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+/* --- SPECIFIC MODULE STYLES --- */
+
+/* Recipe Collage Grid */
+.recipe-collage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 250px 200px;
+    gap: 20px;
+}
+
+.recipe-collage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.recipe-collage img:nth-child(1) {
+    grid-column: 1 / -1; /* Spans full width */
+}
+
+/* Pollock Card */
+.pollock-card {
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    padding: 50px;
+    position: relative;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pollock-card img {
+    mix-blend-mode: multiply;
+    width: 110%; /* Slightly oversized for effect */
+    margin-left: -5%;
+}
+
+.card-text h2 {
+    font-size: 3rem;
+    line-height: 0.9;
+    color: var(--primary-blue);
+    text-transform: uppercase;
+}
+
+.yellow-bar {
+    width: 60%;
+    height: 40px;
+    background-color: var(--accent-yellow);
+    margin-top: 10px;
+}
+
+/* --- ANIMATION CLASSES --- */
+.fade-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-on-scroll.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 40px;
+    background: #111;
+    color: #555;
+    font-size: 0.8rem;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================= */
+
+/* LAPTOPS (Max width 1200px) */
+@media screen and (max-width: 1200px) {
+    .hero-content h1 { font-size: 4rem; }
+    .content-row { gap: 40px; }
+    .pollock-card { padding: 30px; }
+}
+
+/* TABLETS (Max width 900px) */
+@media screen and (max-width: 900px) {
+    /* Nav */
+    nav { padding: 20px 30px; }
+    
+    /* Hero */
+    .hero-content h1 { font-size: 3.5rem; }
+    
+    /* Features */
+    .features-grid {
+        grid-template-columns: 1fr 1fr; /* 2 columns */
+        gap: 30px;
+    }
+
+    /* Discover Layout */
+    .content-row, .content-row.reverse {
+        flex-direction: column-reverse; /* Stack vertically, text below image */
+        margin-bottom: 80px;
+        text-align: center;
+    }
+
+    .text-col {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    .discover-header { text-align: center; }
+}
+
+/* MOBILE PHONES (Max width 600px) */
+@media screen and (max-width: 600px) {
+    /* Mobile Nav */
+    .nav-links { display: none; } /* Simplified: Hide links for demo */
+    .hamburger { display: block; cursor: pointer; }
+    .hamburger span {
+        display: block; width: 25px; height: 2px; background: white; margin: 5px 0;
+    }
+
+    /* Hero */
+    .hero-content h1 { font-size: 2.8rem; }
+    .hero-subtitle { font-size: 0.95rem; }
+    
+    /* Features */
+    .features-grid {
+        grid-template-columns: 1fr; /* 1 column */
+    }
+
+    /* Images */
+    .recipe-collage {
+        grid-template-rows: 200px 150px; /* Smaller heights */
+    }
+    
+    .pollock-card .card-text h2 { font-size: 2.2rem; }
+}
